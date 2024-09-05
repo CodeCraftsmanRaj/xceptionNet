@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfake Detection</title>
+    <link rel="stylesheet" href="stylesbabe.css">
+</head>
+<body>
+    <div class="background-image-wrapper">
+        <img src="rajtalkstoomuch.jpg" class="background-image" alt="Background Image">
+    </div>
+    <div class="overlay"></div>
+
+    <header>
+        <h1>Deepfake Detection Using XceptionNet + InceptionResnet</h1>
+    </header>
+
+    <div class="container">
+        <h2>Upload or Record a Video for Analysis using XceptionNet + InceptionResnet</h2>
+        <p>Select a video file to upload or record a video using your webcam.</p>
+        
+        <!-- Upload Video Section -->
+        <div class="upload-btn-wrapper">
+            <button class="btn animated-btn" onclick="document.getElementById('videoUpload').click()">Upload Video</button>
+            <input type="file" id="videoUpload" name="videoUpload" accept="video/*" onchange="handleFileUpload(event)" style="display: none;">
+        </div>
+
+        <div id="progress-bar">
+            <div id="progress-bar-fill"></div>
+        </div>
+
+        <div id="upload-status"></div>
+    </div>
+
+    
+    </footer>
+
+    <script>
+        // Handle file upload and simulate progress bar
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const progressBarFill = document.getElementById('progress-bar-fill');
+                let progress = 0;
+
+                const interval = setInterval(() => {
+                    if (progress < 100) {
+                        progress += 10;
+                        progressBarFill.style.width = progress + '%';
+                    } else {
+                        clearInterval(interval);
+                        document.getElementById('upload-status').innerHTML = `<p>Uploaded: ${file.name}</p>`;
+                        // Process the file or upload it to your server for deepfake detection
+                    }
+                }, 200);
+            }
+        }
+    </script>
+</body>
+</html>
